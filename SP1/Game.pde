@@ -10,10 +10,11 @@ class Game
   private int playerLife;
   private Dot player;
   private Dot player2;
+  private Dot[] food;
   private Dot[] enemies;
   
    
-  Game(int width, int height, int numberOfEnemies,int numberOfLives)
+  Game(int width, int height, int numberOfEnemies,int numberOfLives,int numberOfFood)
   {
     if(width < 10 || height < 10)
     {
@@ -28,7 +29,7 @@ class Game
     this.width = width;
     this.height = height;
     keys = new Keys();
-    resetGame(numberOfEnemies,numberOfLives); // enemies,life
+    resetGame(numberOfEnemies,numberOfLives,numberOfFood); // enemies,life
   }
   
   public int getWidth()
@@ -49,14 +50,19 @@ class Game
   {
     playerLife = life;
   }
-  public void resetGame(int numberOfEnemies,int life)
+  public void resetGame(int numberOfEnemies,int life, int numberOfFood)
   {
     player = new Dot(0,0,width-1, height-1);
     player2 = new Dot(0,0,width-1, height-1);
     enemies = new Dot[numberOfEnemies];
+    food = new Dot[numberOfFood];
     for(int i = 0; i < numberOfEnemies; ++i)
     {
       enemies[i] = new Dot(width-1, height-1, width-1, height-1);
+    }
+    for(int i = 0; i < numberOfFood; ++i)
+    {
+      food[i] = new Dot(width-1, height-1, width-1, height-1);
     }
     this.playerLife = life;
   }
@@ -75,6 +81,7 @@ class Game
   {
     updatePlayer();
     updatePlayer2();
+    updateFood();
     updateEnemies();
     checkForCollisions();
     clearBoard();
@@ -127,7 +134,7 @@ class Game
     {
       player2.moveUp();
     }
-    if(keys.rightDown() && !keys.leftDown())
+    if(keys.leftDown() && !keys.rightDown())
     {
       player2.moveLeft();
     }
@@ -202,7 +209,67 @@ class Game
       }
     }
   }
-  
+  private void updateFood()
+  {
+    for(int i = 0; i < food.length; ++i)
+    {
+      //Should we follow or move randomly?
+      //2 out of 3 we will follow..
+      if(rnd.nextInt(3) < 2)
+      {
+        //We follow
+        int dx = player.getX() - food[i].getX();
+        int dy = player.getY() - food[i].getY();
+        if(abs(dx) > abs(dy))
+        {
+          if(dx > 0)
+          {
+            //Player is to the right
+            food[i].moveLeft();
+          }
+          else
+          {
+            //Player is to the left
+            food[i].moveRight();
+          }
+        }
+        else if(dy > 0)
+        {
+          //Player is down;
+          food[i].moveUp();
+        }
+        else
+        {//Player is up;
+          food[i].moveDown();
+        }
+      }
+      else
+      {
+        //We move randomly
+        int move = rnd.nextInt(4);
+        if(move == 0)
+        {
+          //Move right
+          food[i].moveRight();
+        }
+        else if(move == 1)
+        {
+          //Move left
+          food[i].moveLeft();
+        }
+        else if(move == 2)
+        {
+          //Move up
+          food[i].moveUp();
+        }
+        else if(move == 3)
+        {
+          //Move down
+          food[i].moveDown();
+        }
+      }
+    }
+  }
   private void populateBoard()
   {
     //Insert player
@@ -212,6 +279,10 @@ class Game
     for(int i = 0; i < enemies.length; ++i)
     {
       board[enemies[i].getX()][enemies[i].getY()] = 2;
+    }
+    for(int i = 0; i < food.length; ++i)
+    {
+      board[food[i].getX()][food[i].getY()] = 3;
     }
   }
    

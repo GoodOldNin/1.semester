@@ -12,7 +12,8 @@ import java.util.Random;
 
 int numEnemies = 15;
 int numLife = 50;
-Game game = new Game(30, 20, numEnemies, numLife);
+int numFood = 3;
+Game game = new Game(30, 20, numEnemies, numLife, numFood);
 PFont font;
 
 boolean startScreen = true;
@@ -47,8 +48,8 @@ void keyReleased()
   }
   else if (endScreen)
   {
-    //resetGame(int numberOfEnemies,int life)
-    game.resetGame(numEnemies,numLife);
+    //resetGame(int numberOfEnemies,int life, int numFood)
+    game.resetGame(numEnemies,numLife,numFood);
     playGame = true;
     endScreen = false;
   }
@@ -67,7 +68,7 @@ void keyPressed()
   }
   else if (endScreen)
   {
-    game.resetGame(numEnemies,numLife);
+    game.resetGame(numEnemies,numLife,numFood);
     playGame = true;
     endScreen = false;
   }
