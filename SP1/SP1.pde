@@ -38,7 +38,7 @@ void keyReleased()
 {
   if (playGame)
   {
-    game.onKeyReleased(key);
+    game.onKeyReleased(key, keyCode);
   }
   else if (startScreen)
   {
@@ -58,7 +58,7 @@ void keyPressed()
 {
   if (playGame)
   {
-    game.onKeyPressed(key);
+    game.onKeyPressed(key, keyCode);
   }
   else if (startScreen)
   {
@@ -123,6 +123,11 @@ void draw()
           else if(board[x][y] == 3)
           {
             fill(0,255,0);
+          }
+          //player2
+          else if(board[x][y] == 4)
+          {
+            fill(255,255,0);
           }
             stroke(100,100,100);
             rect(x*40, y*40, 40, 40);

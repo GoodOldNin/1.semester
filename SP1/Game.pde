@@ -9,6 +9,7 @@ class Game
   private Keys keys;
   private int playerLife;
   private Dot player;
+  private Dot player2;
   private Dot[] enemies;
   
    
@@ -51,6 +52,7 @@ class Game
   public void resetGame(int numberOfEnemies,int life)
   {
     player = new Dot(0,0,width-1, height-1);
+    player2 = new Dot(0,0,width-1, height-1);
     enemies = new Dot[numberOfEnemies];
     for(int i = 0; i < numberOfEnemies; ++i)
     {
@@ -59,19 +61,20 @@ class Game
     this.playerLife = life;
   }
   
-  public void onKeyPressed(char ch)
+  public void onKeyPressed(char ch, int code)
   {
-    keys.onKeyPressed(ch);
+    keys.onKeyPressed(ch, code);
   }
   
-  public void onKeyReleased(char ch)
+  public void onKeyReleased(char ch, int code)
   {
-    keys.onKeyReleased(ch);
+    keys.onKeyReleased(ch, code);
   }
   
   public void update()
   {
     updatePlayer();
+    updatePlayer2();
     updateEnemies();
     checkForCollisions();
     clearBoard();
@@ -115,7 +118,27 @@ class Game
     if(keys.dDown() && !keys.aDown())
     {
       player.moveRight();
-    }  
+    }
+  }
+  private void updatePlayer2()
+  {
+    //Update player2
+    if(keys.upDown() && !keys.downDown())
+    {
+      player2.moveUp();
+    }
+    if(keys.rightDown() && !keys.leftDown())
+    {
+      player2.moveLeft();
+    }
+    if(keys.downDown() && !keys.upDown())
+    {
+      player2.moveDown();
+    }
+    if(keys.rightDown() && !keys.leftDown())
+    {
+      player2.moveRight();
+    }
   }
   
   private void updateEnemies()
@@ -184,6 +207,7 @@ class Game
   {
     //Insert player
     board[player.getX()][player.getY()] = 1;
+    board[player2.getX()][player2.getY()] = 4;
     //Insert enemies
     for(int i = 0; i < enemies.length; ++i)
     {
