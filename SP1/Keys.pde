@@ -8,6 +8,7 @@ class Keys
   private boolean downDown = false;
   private boolean leftDown = false;
   private boolean rightDown = false;
+  private boolean spaceDown = false;
   
   public Keys(){}
   
@@ -49,6 +50,10 @@ class Keys
   {
     return rightDown;
   }
+  public boolean spaceDown()
+  {
+    return spaceDown;
+  }
     
   
   
@@ -85,7 +90,11 @@ class Keys
     if(code==RIGHT)
     {
       rightDown = true;
-    }   
+    }
+    if(ch == ' ')
+    {
+      spaceDown = true;
+    }
 }
   
 void onKeyReleased(char ch, int code)
@@ -122,6 +131,10 @@ void onKeyReleased(char ch, int code)
   if(code==RIGHT)
   {
     rightDown = false;
+  }
+  if(ch == ' ')
+  {
+    spaceDown = false;
   }
 }
 }

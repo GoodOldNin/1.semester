@@ -10,15 +10,18 @@
 import java.util.Random;
 // game (boardHeight,boardLength, enemys, lives)
 
-int numEnemies = 15;
-int numLife = 50;
+int numEnemies = 0;
+int numLife = 10;
 int numFood = 3;
+int goalPoints = 10;
 Game game = new Game(30, 20, numEnemies, numLife, numFood);
 PFont font;
-
+String winner;
 boolean startScreen = true;
 boolean endScreen = false;
 boolean playGame = false;
+boolean spaceDown = false;
+
 
 
 
@@ -34,14 +37,9 @@ void setup()
   font = createFont("Arial", 16, true);
   textFont(font, 16);
 }
-
-void keyReleased()
+void mouseClicked()
 {
-  if (playGame)
-  {
-    game.onKeyReleased(key, keyCode);
-  }
-  else if (startScreen)
+  if (startScreen)
   {
     playGame = true;
     startScreen = false;
@@ -54,24 +52,14 @@ void keyReleased()
     endScreen = false;
   }
 }
+void keyReleased()
+{
+    game.onKeyReleased(key, keyCode);
+}
 
 void keyPressed()
 {
-  if (playGame)
-  {
-    game.onKeyPressed(key, keyCode);
-  }
-  else if (startScreen)
-  {
-    playGame = true;
-    startScreen = false;
-  }
-  else if (endScreen)
-  {
-    game.resetGame(numEnemies,numLife,numFood);
-    playGame = true;
-    endScreen = false;
-  }
+    game.onKeyPressed(key, keyCode); 
 }
 
 
@@ -89,9 +77,32 @@ void draw()
   {
     if (game.getPlayerLife() <= 0)
     {
+      winner ="yellow";
       background(0);
       endScreen = true;
       playGame = false;
+    }
+    else if (game.getPlayer2Life() <= 0)
+    {
+      winner = "blue";
+      background(0);
+      endScreen = true;
+      playGame = false;
+    }
+    else if (game.getPlayerScore() >= goalPoints)
+    {
+      winner ="blue";
+      background(0);
+      endScreen = true;
+      playGame = false;
+    }
+    else if (game.getPlayer2Score() >= goalPoints)
+    {
+      winner = "yellow";
+      background(0);
+      endScreen = true;
+      playGame = false;
+      delay(500);
     }
     else
     {
@@ -136,7 +147,9 @@ void draw()
       }
       fill(255);
       text("P1 Lives: "+game.getPlayerLife(), 25,25);
-      text("P2 Lives: "+game.getPlayer2Life(), 750,25);
+      text("P2 Lives: "+game.getPlayer2Life(), 1075,25);
+      text("P1 Score: "+game.getPlayerScore(), 25,50);
+      text("P2 Score: "+game.getPlayer2Score(), 1075,50);
     }
   }
 }
@@ -149,7 +162,7 @@ void welcomeScreen()
   text("THE\nKILLER SQUARES\n!!111oneone!", 600, 400);
   textSize(30);
   textAlign(CENTER, CENTER);
-  text("Press Any Key To Start...", 600, 750);
+  text("Press Mouse To Start...", 600, 750);
   drawPlayer(200,150,"blue");
   drawPlayer(600,600,"yellow");
   drawPlayer(1000,150,"green");
@@ -198,21 +211,19 @@ void defaultSettings()
 {
   strokeWeight(1);
   rectMode(CORNER);
-  textSize(16);
+  textSize(20);
   textAlign(TOP,LEFT);  
 }
 
 void ending()
 {
-  String winner = "blue";
   fill(255,50,255);
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Game Over\nAnd The Winner IS...\n"+winner, 600, 400);
   textSize(30);
   textAlign(CENTER, CENTER);
-  text("Press Any Key To Restart...", 600, 750);
+  text("Press Mouse To Restart...", 600, 750);
   drawPlayer(600,600,winner);
   defaultSettings();
-  
-} 
+}
