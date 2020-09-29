@@ -8,6 +8,7 @@ class Game
   private int[][] board;
   private Keys keys;
   private int playerLife;
+  private int playerLife2;
   private Dot player;
   private Dot player2;
   private Dot[] food;
@@ -46,9 +47,17 @@ class Game
   {
     return playerLife;
   }
+    public int getPlayer2Life()
+  {
+    return player2Life;
+  }
   public void setPlayerLife(int life)
   {
     playerLife = life;
+  }
+  public void setPlayerLife2(int life)
+  {
+    player2Life = life;
   }
   public void resetGame(int numberOfEnemies,int life, int numberOfFood)
   {
@@ -65,6 +74,7 @@ class Game
       food[i] = new Dot(width-1, height-1, width-1, height-1);
     }
     this.playerLife = life;
+    this.player2Life = life;
   }
   
   public void onKeyPressed(char ch, int code)
@@ -295,6 +305,11 @@ class Game
       {
         //We have a collision
         --playerLife;
+      }
+      if(enemies[i].getX() == player2.getX() && enemies[i].getY() == player2.getY())
+      {
+        //We have a collision
+        --player2Life;
       }
     }
   }

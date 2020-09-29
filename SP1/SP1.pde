@@ -135,7 +135,8 @@ void draw()
         }
       }
       fill(255);
-      text("Lives: "+game.getPlayerLife(), 25,25);
+      text("P1 Lives: "+game.getPlayerLife(), 25,25);
+      text("P2 Lives: "+game.getPlayer2Life(), 750,25);
     }
   }
 }
