@@ -179,65 +179,37 @@ class Game
       if(rnd.nextInt(3) < 2)
       {
         //We follow
-        int dx = player.getX() - enemies[i].getX();
-        int dy = player.getY() - enemies[i].getY();
-        int dx2 = player2.getX() - enemies[i].getX();
-        int dy2 = player2.getY() - enemies[i].getY();
-        
-        if((dx) < (dx2))
-        {
-          //chase p1
-          if (abs(dx)>abs(dy))
-          {
-            if(dx > 0)
-            {
-              //Player is to the right
-              enemies[i].moveRight();
-            }
-            else
-            {
-              //Player is to the left
-              enemies[i].moveLeft();
-            }
-          }
-          else if(dy > 0)
-          {
-            //Player is down;
-            enemies[i].moveDown();
-          }
-          else
-          {          
-            //Player is up;
-            enemies[i].moveUp();
-          }         
+        int dx = 0, dy = 0, dx2 = 0, dy2 = 0;
+        if(i < enemies.length/2){
+          dx2 = player2.getX() - enemies[i].getX();
+          dy2 = player2.getY() - enemies[i].getY();
         }
         else
         {
-          if (abs(dx2)>abs(dy2))
+          dx = player.getX() - enemies[i].getX();
+          dy = player.getY() - enemies[i].getY();
+        }
+        if(abs(dx) > abs(dy) || abs(dx2) > abs(dy2))
+        {
+          if(dx < 0 || dx2 < 0)
           {
-            //chase p2
-            if(dx2 > 0)
-            {
-              //Player2 is to the right
-              enemies[i].moveRight();
-            }
-            else
-            {
-              //Player2 is to the left
-              enemies[i].moveLeft();
-            }
-          
-            if(dy2 > 0)
-            {
-              //Player2 is down;
-              enemies[i].moveDown();
-            }
-            else
-            {          
-              //Player2 is up;
-              enemies[i].moveUp();
-            }
+            //Player is to the right
+            enemies[i].moveLeft();
           }
+          else
+          {
+            //Player is to the left
+            enemies[i].moveRight();
+          }
+        }
+        else if(dy < 0 || dy2 < 0)
+        {
+          //Player is down;
+          enemies[i].moveUp();
+        }
+        else
+        {//Player is up;
+          enemies[i].moveDown();
         }
       }
       else
