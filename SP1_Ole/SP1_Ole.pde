@@ -11,7 +11,7 @@ import java.util.Random;
 // game (boardHeight,boardLength, enemys, lives)
 
 int numEnemies = 15;
-int numLife = 50;
+int numLife = 50;  // HER - Bør vi vel have vores "Liv" fx 3 liv Game Over.
 int numFood = 3;
 Game game = new Game(30, 20, numEnemies, numLife, numFood);
 PFont font;
@@ -23,7 +23,7 @@ boolean playGame = false;
 
 
 public void settings() {
-  size(1201, 801);
+   size(1201, 801);
 }
 
 void setup()
@@ -87,7 +87,7 @@ void draw()
   }
   else if (playGame)
   {
-    if (game.getPlayerLife() <= 0)
+    if (game.getPlayerLife() <= 0) // HER - Skal vi have player2 med her?
     {
       background(0);
       endScreen = true;
@@ -135,8 +135,7 @@ void draw()
         }
       }
       fill(255);
-      text("P1 Lives: "+game.getPlayerLife(), 25,25);
-      text("P2 Lives: "+game.getPlayer2Life(), 1100,25);
+      text("Lives: "+game.getPlayerLife(), 25,25);
     }
   }
 }
@@ -208,7 +207,7 @@ void ending()
   fill(255,50,255);
   textSize(42);
   textAlign(CENTER, CENTER);
-  text("Game Over\nAnd The Winner IS...\n"+winner, 600, 400);
+  text("Game Over\nAnd The Winner IS...\n"+winner, 600, 400);     // Det er hele tiden blå, der vinder. Kan være det ændres når vi laver player2life.
   textSize(30);
   textAlign(CENTER, CENTER);
   text("Press Any Key To Restart...", 600, 750);

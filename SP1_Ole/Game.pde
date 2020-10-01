@@ -7,8 +7,7 @@ class Game
   private final int height;
   private int[][] board;
   private Keys keys;
-  private int playerLife;
-  private int player2Life;
+  private int playerLife; // HER - private int player2Life; 
   private Dot player;
   private Dot player2;
   private Dot[] food;
@@ -43,21 +42,13 @@ class Game
     return height;
   }
   
-  public int getPlayerLife()
+  public int getPlayerLife()  // HER -  public int getPlayer2Life() ?
   {
     return playerLife;
-  }
-    public int getPlayer2Life()
-  {
-    return player2Life;
   }
   public void setPlayerLife(int life)
   {
     playerLife = life;
-  }
-  public void setPlayerLife2(int life)
-  {
-    player2Life = life;
   }
   public void resetGame(int numberOfEnemies,int life, int numberOfFood)
   {
@@ -74,7 +65,6 @@ class Game
       food[i] = new Dot(width-1, height-1, width-1, height-1);
     }
     this.playerLife = life;
-    this.player2Life = life;
   }
   
   public void onKeyPressed(char ch, int code)
@@ -167,8 +157,8 @@ class Game
       if(rnd.nextInt(3) < 2)
       {
         //We follow
-        int dx = player.getX() - enemies[i].getX();
-        int dy = player.getY() - enemies[i].getY();
+        int dx = player.getX() - enemies[i].getX();  // HER - int dx = player2.getX() - enemies[i].getX(); ?
+        int dy = player.getY() - enemies[i].getY();  // HER - int dy = player2.getY() - enemies[i].getY(); ?
         if(abs(dx) > abs(dy))
         {
           if(dx > 0)
@@ -193,7 +183,7 @@ class Game
         }
       }
       else
-       {
+      {
         //We move randomly
         int move = rnd.nextInt(4);
         if(move == 0)
@@ -301,15 +291,10 @@ class Game
     //Check enemy collisions
     for(int i = 0; i < enemies.length; ++i)
     {
-      if(enemies[i].getX() == player.getX() && enemies[i].getY() == player.getY())
+      if(enemies[i].getX() == player.getX() && enemies[i].getY() == player.getY())  // HER muligvis - if(enemies[i].getX() == player2.getX() && enemies[i].getY() == player2.getY())  ?
       {
         //We have a collision
         --playerLife;
-      }
-      if(enemies[i].getX() == player2.getX() && enemies[i].getY() == player2.getY())
-      {
-        //We have a collision
-        --player2Life;
       }
     }
   }
