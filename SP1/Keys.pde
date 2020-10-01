@@ -54,8 +54,6 @@ class Keys
   {
     return spaceDown;
   }
-    
-  
   
   void onKeyPressed(char ch, int code)
   {
@@ -95,47 +93,45 @@ class Keys
     {
       spaceDown = true;
     }
-}
+  }
   
-void onKeyReleased(char ch, int code)
-{
-  if(ch == 'W' || ch == 'w')
+  void onKeyReleased(char ch, int code)
   {
-    wDown = false;
+    if(ch == 'W' || ch == 'w')
+    {
+      wDown = false;
+    }
+    if (ch == 'A' || ch == 'a')
+    {
+      aDown = false;
+    }
+    if(ch == 'S' || ch == 's')
+    {
+      sDown = false;
+    }
+    if(ch == 'D' || ch == 'd')
+    {
+      dDown = false;
+    }
+    if(code==UP)
+    {
+      upDown = false;
+    }
+      if(code==DOWN)
+    {
+      downDown = false;
+    }
+    if(code==LEFT)
+    {
+      leftDown = false;
+    }
+    if(code==RIGHT)
+    {
+      rightDown = false;
+    }
+    if(ch == ' ')
+    {
+      spaceDown = false;
+    }
   }
-  if (ch == 'A' || ch == 'a')
-  {
-    aDown = false;
-  }
-  if(ch == 'S' || ch == 's')
-  {
-    sDown = false;
-  }
-  if(ch == 'D' || ch == 'd')
-  {
-    dDown = false;
-  }
-  {
-  if(code==UP)
-  {
-    upDown = false;
-  }
-  if(code==DOWN)
-  {
-    downDown = false;
-  }
-  if(code==LEFT)
-  {
-    leftDown = false;
-  }
-  if(code==RIGHT)
-  {
-    rightDown = false;
-  }
-  if(ch == ' ')
-  {
-    spaceDown = false;
-  }
-}
-}
 }

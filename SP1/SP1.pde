@@ -10,7 +10,7 @@
 import java.util.Random;
 // game (boardHeight,boardLength, enemys, lives)
 
-int numEnemies = 0;
+int numEnemies = 5;
 int numLife = 10;
 int numFood = 3;
 int goalPoints = 10;
@@ -34,8 +34,7 @@ void setup()
   background(0);
   frameRate(10);
   fill(0);
-  font = createFont("Arial", 16, true);
-  textFont(font, 16);
+  font = createFont("Bodoni MT Bold Italic", 18);
 }
 void mouseClicked()
 {
@@ -102,7 +101,6 @@ void draw()
       background(0);
       endScreen = true;
       playGame = false;
-      delay(500);
     }
     else
     {

@@ -181,27 +181,63 @@ class Game
         //We follow
         int dx = player.getX() - enemies[i].getX();
         int dy = player.getY() - enemies[i].getY();
-        if(abs(dx) > abs(dy))
+        int dx2 = player2.getX() - enemies[i].getX();
+        int dy2 = player2.getY() - enemies[i].getY();
+        
+        if((dx) < (dx2))
         {
-          if(dx > 0)
+          //chase p1
+          if (abs(dx)>abs(dy))
           {
-            //Player is to the right
-            enemies[i].moveRight();
+            if(dx > 0)
+            {
+              //Player is to the right
+              enemies[i].moveRight();
+            }
+            else
+            {
+              //Player is to the left
+              enemies[i].moveLeft();
+            }
+          }
+          else if(dy > 0)
+          {
+            //Player is down;
+            enemies[i].moveDown();
           }
           else
-          {
-            //Player is to the left
-            enemies[i].moveLeft();
-          }
-        }
-        else if(dy > 0)
-        {
-          //Player is down;
-          enemies[i].moveDown();
+          {          
+            //Player is up;
+            enemies[i].moveUp();
+          }         
         }
         else
-        {//Player is up;
-          enemies[i].moveUp();
+        {
+          if (abs(dx2)>abs(dy2))
+          {
+            //chase p2
+            if(dx2 > 0)
+            {
+              //Player2 is to the right
+              enemies[i].moveRight();
+            }
+            else
+            {
+              //Player2 is to the left
+              enemies[i].moveLeft();
+            }
+          
+            if(dy2 > 0)
+            {
+              //Player2 is down;
+              enemies[i].moveDown();
+            }
+            else
+            {          
+              //Player2 is up;
+              enemies[i].moveUp();
+            }
+          }
         }
       }
       else
@@ -231,6 +267,7 @@ class Game
       }
     }
   }
+  
   private void updateFood()
   {
     for(int i = 0; i < food.length; ++i)
@@ -240,11 +277,17 @@ class Game
       if(rnd.nextInt(3) < 2)
       {
         //We follow
-        int dx = player.getX() - food[i].getX();
-        int dy = player.getY() - food[i].getY();
-        if(abs(dx) > abs(dy))
+        int dx = 0, dy = 0, dx2 = 0, dy2 = 0;
+        if(i < food.length/2){
+          dx2 = player2.getX() - food[i].getX();
+          dy2 = player2.getY() - food[i].getY();
+        }else{
+          dx = player.getX() - food[i].getX();
+          dy = player.getY() - food[i].getY();
+        }
+        if(abs(dx) > abs(dy) || abs(dx2) > abs(dy2))
         {
-          if(dx > 0)
+          if(dx > 0 || dx2 > 0)
           {
             //Player is to the right
             food[i].moveLeft();
@@ -255,7 +298,7 @@ class Game
             food[i].moveRight();
           }
         }
-        else if(dy > 0)
+        else if(dy > 0 || dy2 > 0)
         {
           //Player is down;
           food[i].moveUp();
@@ -292,6 +335,7 @@ class Game
       }
     }
   }
+
   private void populateBoard()
   {
     //Insert player
@@ -329,6 +373,8 @@ class Game
       if(food[i].getX() == player.getX() && food[i].getY() == player.getY())
       {
         //We have a collision
+        food[i].setX(rnd.nextInt(width-1));
+        food[i].setY(rnd.nextInt(height-1));
         ++playerScore;
       }
       if(food[i].getX() == player2.getX() && food[i].getY() == player2.getY())
