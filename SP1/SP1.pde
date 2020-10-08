@@ -10,8 +10,8 @@
 import java.util.Random;
 // game (boardHeight,boardLength, enemys, lives)
 
-int numEnemies = 10;
-int numLife = 10;
+int numEnemies = 5;
+int numLife = 100;
 int numFood = 6;
 int goalPoints = 100;
 Game game = new Game(30, 20, numEnemies, numLife, numFood);
@@ -217,7 +217,7 @@ void ending()
   fill(255,50,255);
   textSize(42);
   textAlign(CENTER, CENTER);
-  text("Game Over\nAnd The Winner IS...\n"+winner, 600, 400);
+  text("Game Over\nAnd The Winner IS...\n"+winner.toUpperCase(), 600, 400);
   textSize(30);
   textAlign(CENTER, CENTER);
   text("Press Mouse To Restart...", 600, 750);
