@@ -1,0 +1,9 @@
+vi skal have funtionerne(stop,pause,start, getprice og "free-ride")
+
+
+console kan lånes fra bank excercice.
+
+arrayList med taxi( husk dynamisk)
+
+tid 
+
