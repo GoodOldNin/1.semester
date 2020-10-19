@@ -1,4 +1,5 @@
 public class Main {
-    hej
-    hej timmy  her
+    public static void main(String[] args) {
+        
+    }
 }
