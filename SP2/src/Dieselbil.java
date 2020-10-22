@@ -9,11 +9,12 @@ class Dieselbil extends Bil
         this.kmPrL = kmPrL;
     }
 
-    public int getHarPartikelFilter() {
+    public boolean getHarPartikelFilter() {
         return harPartikelFilter;
     }
 
-    public void setHarPartikelFilter(int harPartikelFilter) {
+    public void setHarPartikelFilter(boolean harPartikelFilter)
+    {
         this.harPartikelFilter = harPartikelFilter;
     }
 

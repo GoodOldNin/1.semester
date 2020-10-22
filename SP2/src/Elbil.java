@@ -1,9 +1,11 @@
-public class Elbil {
+public class Elbil extends Bil
+{
     int batterikapacitetKWh;
     int maxKm;
     int whPrKm;
 
-    public Elbil(int batterikapacitetKWh, int maxKm, int whPrKm) {
+    public Elbil(int regNr, int mærke, int model, int årgang, int antalDøre, int batterikapacitetKWh, int maxKm, int whPrKm) {
+        super(regNr, mærke, model, årgang, antalDøre);
         this.batterikapacitetKWh = batterikapacitetKWh;
         this.maxKm = maxKm;
         this.whPrKm = whPrKm;
@@ -45,8 +47,8 @@ public class Elbil {
     @Override
     public double beregnGrønEjerafgift()
     {
-        int x;
-        100/(whPrKm/91.25) = x;
+        double x;
+        x = 100/(whPrKm/91.25);
         if ( x < 5)
         {
             return 10470;
@@ -72,4 +74,3 @@ public class Elbil {
         }
 
     }
-}
