@@ -6,6 +6,7 @@ public abstract class Bil
     public int årgang;
     public int antalDøre;
 
+
     public Bil(int regNr, int mærke, int model, int årgang, int antalDøre) {
         this.regNr = regNr;
         this.mærke = mærke;
