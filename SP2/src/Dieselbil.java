@@ -3,7 +3,7 @@ class Dieselbil extends Bil
     public boolean harPartikelFilter;
     public int kmPrL;
 
-    public Dieselbil(int regNr, int mærke, int model, int årgang, int antalDøre, boolean harPartikelFilter, int kmPrL) {
+    public Dieselbil(String regNr, String mærke, String model, int årgang, int antalDøre, boolean harPartikelFilter, int kmPrL) {
         super(regNr, mærke, model, årgang, antalDøre);
         this.harPartikelFilter = harPartikelFilter;
         this.kmPrL = kmPrL;
@@ -28,15 +28,14 @@ class Dieselbil extends Bil
 
     @Override
     public String toString() {
-        return "Dieselbil{" +
-                "regNr=" + regNr +
-                ", mærke=" + mærke +
-                ", model=" + model +
-                ", årgang=" + årgang +
-                ", antalDøre=" + antalDøre +
-                ", harPartikelFilter=" + harPartikelFilter +
-                ", kmPrL=" + kmPrL +
-                '}';
+        return "\n\nDieselbil" +
+                "\nRegNr = " + regNr +
+                "\nMærke = " + mærke +
+                "\nModel = " + model +
+                "\nÅrgang = " + årgang +
+                "\nAntalDøre = " + antalDøre +
+                "\nPartikelfilter? = " + harPartikelFilter +
+                "\nKmPrL = " + kmPrL;
     }
 
     @Override

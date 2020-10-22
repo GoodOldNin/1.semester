@@ -1,13 +1,13 @@
 public abstract class Bil
 {
-    public int regNr;
-    public int mærke;
-    public int model;
+    public String regNr;
+    public String mærke;
+    public String model;
     public int årgang;
     public int antalDøre;
 
 
-    public Bil(int regNr, int mærke, int model, int årgang, int antalDøre) {
+    public Bil(String regNr, String mærke, String model, int årgang, int antalDøre) {
         this.regNr = regNr;
         this.mærke = mærke;
         this.model = model;
@@ -15,27 +15,27 @@ public abstract class Bil
         this.antalDøre = antalDøre;
     }
 
-    public int getRegNr() {
+    public String getRegNr() {
         return regNr;
     }
 
-    public void setRegNr(int regNr) {
+    public void setRegNr(String regNr) {
         this.regNr = regNr;
     }
 
-    public int getMærke() {
+    public String getMærke() {
         return mærke;
     }
 
-    public void setMærke(int mærke) {
+    public void setMærke(String mærke) {
         this.mærke = mærke;
     }
 
-    public int getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(int model) {
+    public void setModel(String model) {
         this.model = model;
     }
 

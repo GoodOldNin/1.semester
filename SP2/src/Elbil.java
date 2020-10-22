@@ -4,7 +4,7 @@ public class Elbil extends Bil
     int maxKm;
     int whPrKm;
 
-    public Elbil(int regNr, int mærke, int model, int årgang, int antalDøre, int batterikapacitetKWh, int maxKm, int whPrKm) {
+    public Elbil(String regNr, String mærke, String model, int årgang, int antalDøre, int batterikapacitetKWh, int maxKm, int whPrKm) {
         super(regNr, mærke, model, årgang, antalDøre);
         this.batterikapacitetKWh = batterikapacitetKWh;
         this.maxKm = maxKm;
@@ -37,11 +37,15 @@ public class Elbil extends Bil
 
     @Override
     public String toString() {
-        return "Elbil{" +
-                "batterikapacitetKWh=" + batterikapacitetKWh +
-                ", maxKm=" + maxKm +
-                ", whPrKm=" + whPrKm +
-                '}';
+        return "\n\nElbil" +
+                "\nBatterikapacitet KWh = " + batterikapacitetKWh +
+                "\nMaxKm = " + maxKm +
+                "\nWhPrKm = " + whPrKm +
+                "\nRegNr = " + regNr +
+                "\nMærke='" + mærke +
+                "\nModel='" + model +
+                "\nÅrgang=" + årgang +
+                "\nAntalDøre=" + antalDøre;
     }
 
     @Override

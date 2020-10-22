@@ -15,4 +15,18 @@ public class Garage
     {
         myGarage.add(a);
     }
+
+    @Override
+    public String toString() {
+        return "My Garage:\n\n" + myGarage;
+    }
+    public double beregnGrønAfgiftForBilpark()
+    {
+        double totalAfgift = 0;
+        for (Bil b: myGarage)
+        {
+            totalAfgift += b.beregnGrønEjerafgift();
+        }
+        return totalAfgift;
+    }
 }
