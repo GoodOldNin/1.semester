@@ -40,7 +40,48 @@ class Dieselbil extends Bil
     }
 
     @Override
-    public double beregnGrønEjerafgift() {
+    public double beregnGrønEjerafgift()
+    {
+        if ( kmPrL < 5 && harPartikelFilter == true)
+        {
+            return 15260;
+        }
+        if (5 <= kmPrL && kmPrL < 10 && harPartikelFilter == true)
+        {
+            return 2770;
+        }
+        if (10 <= kmPrL && kmPrL < 15 && harPartikelFilter == true)
+        {
+            return 1850;
+        }
+        if (15 <= kmPrL && kmPrL < 20 && harPartikelFilter == true)
+        {
+            return 1390;
+        }
+        if (20 <= kmPrL && kmPrL < 50 && harPartikelFilter == true)
+        {
+            return 130;
+        }
+        if ( kmPrL < 5 && harPartikelFilter == false)
+        {
+            return 16260;
+        }
+        if (5 <= kmPrL && kmPrL < 10 && harPartikelFilter == false)
+        {
+            return 3770;
+        }
+        if (10 <= kmPrL && kmPrL < 15 && harPartikelFilter == false)
+        {
+            return 2850;
+        }
+        if (15 <= kmPrL && kmPrL < 20 && harPartikelFilter == false)
+        {
+            return 2390;
+        }
+        if (20 <= kmPrL && kmPrL < 50 && harPartikelFilter == false)
+        {
+            return 1130;
+        }
         return 0;
     }
 }
