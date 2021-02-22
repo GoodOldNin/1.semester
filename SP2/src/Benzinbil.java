@@ -3,7 +3,7 @@ class Benzinbil extends Bil
     public int oktantal;
     public int kmPrL;
 
-    public Benzinbil(int regNr, int mærke, int model, int årgang, int antalDøre, int oktantal, int kmPrL) {
+    public Benzinbil(String regNr, String mærke, String model, int årgang, int antalDøre, int oktantal, int kmPrL) {
         super(regNr, mærke, model, årgang, antalDøre);
         this.oktantal = oktantal;
         this.kmPrL = kmPrL;
@@ -27,15 +27,14 @@ class Benzinbil extends Bil
 
     @Override
     public String toString() {
-        return "Benzinbil{" +
-                "regNr=" + regNr +
-                ", mærke=" + mærke +
-                ", model=" + model +
-                ", årgang=" + årgang +
-                ", antalDøre=" + antalDøre +
-                ", oktantal=" + oktantal +
-                ", kmPrL=" + kmPrL +
-                '}';
+        return "Benzinbil\n" +
+                "RegNr = " + regNr +
+                "\nMærke = " + mærke +
+                "\nModel = " + model +
+                "\nÅrgang = " + årgang +
+                "\nAntalDøre = " + antalDøre +
+                "\nOktantal = " + oktantal +
+                "\nKm Per Liter = " + kmPrL;
     }
 
     @Override
