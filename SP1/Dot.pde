@@ -9,7 +9,7 @@ class Dot
   {
     this.x = x;
     this.y = y;
-    this.maxX = maxX;
+    this.maxX = maxX;    // Så man ikke kan bevæge sig uden for skærmen på x og y akse
     this.maxY = maxY;
   }
   
